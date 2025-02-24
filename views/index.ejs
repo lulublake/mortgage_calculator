@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/output.css">
+  
+  <title>Frontend Mentor | Mortgage repayment calculator</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body class="flex flex-col font-[Plus_Jakarta_Sans] font-medium text-[16px] sm:justify-center sm:h-screen sm:items-center  sm:bg-[#e3f3fd]">
+  <div class="flex flex-col sm:flex-row sm:w-1/2 bg-white sm:rounded-xl">
+    <div class="flex flex-col text-[#122f3f] gap-5 px-5 py-8 sm:w-1/2 sm:px-6">
+      <h1 class="font-bold text-[20px] flex flex-col gap-1.5 sm:flex-row sm:justify-between sm:items-center">
+        Mortgage Calculator
+        <span id="reset-button" class="text-[#4e6e7e] underline text-[14px] font-medium cursor-pointer">
+          Clear All
+        </span>
+      </h1>
+
+      <form id="mortgageForm" action="/submit" method="post" class="text-[#4e6e7e] text-[14px] flex flex-col gap-4">
+        <label for="mortgage_amount" class="labels">
+          Mortgage Amount
+          <div class="input-values">
+            <span class="input-span rounded-l-lg">£</span>
+            <input type="number" name="mortgage_amount" class="input-style" min="1" required value="<%= locals.mortgageValue %>">
+          </div>
+        </label>
+
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <label for="mortgage_term" class="labels">
+            Mortgage Term
+            <div class="input-values">
+              <input type="number" name="mortgage_term" class="input-style" min="1" required value="<%= locals.mortgageTerm %>">
+              <span class="input-span rounded-r-lg">years</span>
+            </div>
+          </label>
+
+          <label for="interest_rate" class="labels">
+            Interest Rate
+            <div class="input-values">
+              <input type="number" name="interest_rate" step="0.01" min="0.01" class="input-style" required value="<%= locals.interestRate %>">
+              <span class="input-span rounded-r-lg">%</span>
+            </div>
+          </label>
+        </div>
+
+        <label for="mortgage_type" class="labels">
+          Mortgage Type
+          <label class="radio-type">
+            <input type="radio" name="mortgage_type" value="repayment" required <%= locals.mortgageType === 'repayment' ? 'checked' : '' %>>
+            Repayment
+          </label>
+          <label class="radio-type">
+            <input type="radio" name="mortgage_type" value="interest-only" required <%= locals.mortgageType === 'interest-only' ? 'checked' : '' %>>
+            Interest Only
+          </label>
+        </label>
+
+        <button type="submit" class="text-[#122f3f] font-bold text-[16px] flex items-center justify-center gap-2.5 bg-[#d7da2f] py-3 rounded-4xl">
+          <img src="/assets/images/icon-calculator.svg" alt="calculator icon">
+          Calculate Repayments
+        </button>
+      </form>
+    </div>
+
+    <div class="bg-[#122f3f] p-5 sm:px-6 text-[#9abed5] text-[14px] sm:h-full sm:w-1/2 sm:rounded-r-xl sm:rounded-bl-[50px]">
+      <% if(locals.showResult){ %>
+        <%- include("result.ejs") %>
+      <% }else{ %>
+      <%- include("no-result.ejs") %>
+      <% } %>
+    </div>
+  </div>
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+
+  <script src="/js/reset.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "mortgage-calculator",
+  "version": "1.0.0",
+  "description": "Calculates a users mortgage and interest to be paid at the end ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch",
+    "build": "node --watch index.js"
+  },
+  "author": "Oluchi Onyeguke",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.7",
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "tailwindcss": "^4.0.7"
+  }
+}
